@@ -3,6 +3,8 @@
 """
 
 # стандартная библиотека
+from collections.abc import Sequence
+from numbers import Real
 from pathlib import Path
 from sys import path, argv
 
@@ -16,6 +18,9 @@ debug_data: dict = {}
 # переменные для аннотаций
 Players = dict[str, dict[str, int]]
 Saves = dict[tuple[str, str], tuple[list[int], int]]
+SquareIndex = int
+Series = Sequence[Real | str]
+Matrix = Sequence[Series]
 
 
 # корень проекта
@@ -50,6 +55,21 @@ empty: dict[int, str] = None
 field: str = None
 # индексы выигрышных последовательностей
 wins: list[set[int]] = None
+# стратегические матрицы
+start_matrices: tuple[Matrix, Matrix] = None
+
+
+# строковые представления токенов
+TOKENS = ('X', 'O')
+
+# веса токенов
+WEIGHT_OWN: float = 1.5
+WEIGHT_FOE: float = 1.0
+WEIGHTS: set[float] = {WEIGHT_OWN, WEIGHT_FOE}
+
+
+# словарь сделанных ходов
+turns: dict[int, str] = {}
 
 
 # наименование приложения
