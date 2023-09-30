@@ -3,9 +3,10 @@
 """
 
 # стандартная библиотека
-from collections.abc import Sequence
+from collections.abc import Sequence, Callable
 from numbers import Real
 from pathlib import Path
+from re import compile
 from sys import path, argv
 
 
@@ -39,6 +40,20 @@ saves_path = DATA_DIR / f'{test_path}saves.ttt'
 players_db: Players = {}
 # база сохранений
 saves_db: Saves = {}
+
+
+# regex шаблон для имени игрока
+NAME_PATTERN = compile(r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+')
+# regex шаблон для размера игрового поля
+DIM_PATTERN = compile(r'[3-9]|1[0-9]|20')
+
+
+# текущий авторизованный игрок
+authorized: str
+# список имён активных игроков
+active_players_names: list[str] = []
+# список функций активных игроков
+active_players_funcs: list[Callable] = []
 
 
 # размер поля — все переменные, связанные с размером, вычисляются в utils.change_dim(), первый вызов со значением по умолчанию осуществляется в main.start()

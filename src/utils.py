@@ -31,3 +31,22 @@ def generate_win_combinations(dimension: int) -> list[set[int]]:
     """"""
 
 
+def concatenate_rows(
+        multiline1: str,
+        multiline2: str,
+        *multilines: str,
+        padding: int = 8
+) -> str:
+    """Объединяет произвольное количество строк текстов-колонок в одну строку с несколькими колонками и отступом между ними.
+
+    :param padding: ширина отступа между колонками в пробелах
+    """
+    multilines = multiline1, multiline2, *multilines
+    multilines = [m.split('\n') for m in multilines]
+    padding = ' '*padding
+    return '\n'.join(
+        padding.join(row)
+        for row in zip(*multilines)
+    )
+
+
