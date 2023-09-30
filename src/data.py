@@ -26,14 +26,15 @@ Matrix = Sequence[Series]
 
 # корень проекта
 ROOT_DIR = Path(path[0]).parent
-# каталог данных
-DATA_DIR = ROOT_DIR / 'data'
 
-# модификация путей для тестовых файлов данных
-test_path = 'test/' if DEBUG else ''
+# модификация пути для тестовых данных
+test_path = '/test' if DEBUG else ''
+# каталог данных
+DATA_DIR = ROOT_DIR / f'data{test_path}'
+
 # пути к файлам данных
-players_path = DATA_DIR / f'{test_path}players.ini'
-saves_path = DATA_DIR / f'{test_path}saves.ttt'
+players_path = DATA_DIR / 'players.ini'
+saves_path = DATA_DIR / 'saves.ttt'
 
 
 # база игроков
