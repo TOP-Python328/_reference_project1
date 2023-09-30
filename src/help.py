@@ -3,3 +3,7 @@
 """
 
 
+def render_all() -> str:
+    """"""
+
+
